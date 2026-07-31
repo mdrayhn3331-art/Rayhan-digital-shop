@@ -1,1 +1,321 @@
+/* =========================
+   RESET
+========================= */
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#0f0f0f;
+    color:#fff;
+    min-height:100vh;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#111;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    box-shadow:0 2px 15px rgba(0,0,0,.4);
+}
+
+header h1{
+    font-size:28px;
+    font-weight:700;
+}
+
+.header-btns{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.header-btns a{
+    text-decoration:none;
+    color:#fff;
+    background:#1e88e5;
+    padding:10px 18px;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.header-btns a:hover{
+    background:#1565c0;
+    transform:translateY(-2px);
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box{
+    padding:20px;
+    text-align:center;
+}
+
+.search-box input{
+    width:90%;
+    max-width:550px;
+    padding:14px 18px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:#1f1f1f;
+    color:#fff;
+    font-size:16px;
+}
+
+/* =========================
+   PRODUCTS GRID
+========================= */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:20px;
+}
+/* =========================
+   PRODUCT CARD
+========================= */
+
+.card{
+    background:#1b1b1b;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);
+    transition:all .35s ease;
+    box-shadow:0 5px 15px rgba(0,0,0,.25);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 12px 25px rgba(0,0,0,.45);
+}
+
+.card img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    display:block;
+}
+
+.card h3{
+    font-size:20px;
+    font-weight:600;
+    padding:15px 15px 5px;
+}
+
+.price{
+    color:#00e676;
+    font-size:24px;
+    font-weight:700;
+    padding:0 15px 15px;
+}
+
+.card button{
+    width:calc(100% - 30px);
+    margin:0 15px 15px;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#00c853,#00e676);
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .3s ease;
+}
+
+.card button:hover{
+    transform:scale(1.03);
+    box-shadow:0 0 20px rgba(0,230,118,.35);
+}
+
+.card button:active{
+    transform:scale(.98);
+}
+
+/* =========================
+   IMAGE HOVER
+========================= */
+
+.card{
+    position:relative;
+}
+
+.card img{
+    transition:transform .4s ease;
+}
+
+.card:hover img{
+    transform:scale(1.05);
+}
+
+/* =========================
+   FADE ANIMATION
+========================= */
+
+.card{
+    animation:fadeUp .6s ease;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+/* =========================
+   CART SECTION
+========================= */
+
+.cart{
+    background:#1b1b1b;
+    margin:20px;
+    padding:20px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.cart h2{
+    margin-bottom:15px;
+    font-size:22px;
+    color:#fff;
+}
+
+#cartItems{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#cartItems li{
+    background:#2a2a2a;
+    margin-bottom:10px;
+    padding:12px;
+    border-radius:10px;
+    color:#fff;
+}
+
+#orderBtn{
+    display:block;
+    width:100%;
+    text-align:center;
+    padding:15px;
+    margin-top:15px;
+    text-decoration:none;
+    background:linear-gradient(135deg,#ff5722,#ff9800);
+    color:#fff;
+    font-size:18px;
+    font-weight:bold;
+    border-radius:12px;
+    transition:.3s;
+}
+
+#orderBtn:hover{
+    transform:scale(1.02);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    margin-top:40px;
+    background:#111;
+    text-align:center;
+    padding:20px;
+    color:#999;
+    font-size:14px;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#111;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#555;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#00e676;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width:768px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .card img{
+        height:200px;
+    }
+
+}
+
+@media (max-width:500px){
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .search-box input{
+        width:100%;
+    }
+
+    header h1{
+        font-size:22px;
+    }
+
+    .header-btns{
+        width:100%;
+        justify-content:center;
+    }
+
+    .header-btns a{
+        width:90%;
+        text-align:center;
+    }
+
+}
