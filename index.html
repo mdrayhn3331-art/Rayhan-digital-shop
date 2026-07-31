@@ -2,53 +2,338 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Rayhan Digital Shop</title>
 
-<link rel="stylesheet" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0f1115;
+color:#fff;
+}
+
+a{
+text-decoration:none;
+}
+
+img{
+max-width:100%;
+display:block;
+}
+
+/* Loading */
+
+#loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99999;
+transition:.5s;
+}
+
+#loader img{
+width:140px;
+height:140px;
+border-radius:50%;
+animation:zoom 1.2s infinite;
+box-shadow:0 0 35px #00ff88;
+}
+
+#loader h2{
+margin-top:20px;
+font-size:20px;
+}
+
+@keyframes zoom{
+
+0%{
+transform:scale(.9);
+}
+
+50%{
+transform:scale(1.08);
+}
+
+100%{
+transform:scale(.9);
+}
+
+}
+
+/* Header */
+
+header{
+background:#151922;
+padding:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+
+font-size:26px;
+font-weight:700;
+color:#00ff88;
+
+}
+
+.menu a{
+
+color:white;
+margin-left:12px;
+padding:10px 16px;
+background:#00b96b;
+border-radius:8px;
+
+}
+
+.search{
+
+padding:20px;
+
+}
+
+.search input{
+
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+font-size:16px;
+
+}
+
+/* Product */
+
+.products{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:20px;
+
+}
+
+.card{
+
+background:#181d28;
+border-radius:15px;
+overflow:hidden;
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.card img{
+
+height:320px;
+width:100%;
+object-fit:cover;
+
+}
+
+.card h3{
+
+padding:15px;
+font-size:20px;
+
+}
+
+.price{
+
+padding:0 15px;
+color:#00ff88;
+font-size:24px;
+font-weight:bold;
+
+}
+
+.card button{
+
+width:90%;
+margin:15px;
+padding:13px;
+border:none;
+background:#00c853;
+color:#fff;
+border-radius:10px;
+font-size:17px;
+cursor:pointer;
+
+}
+
+.card button:hover{
+
+background:#00a94f;
+
+}
+
+.cart{
+
+margin:20px;
+padding:20px;
+background:#181d28;
+border-radius:15px;
+
+}
+
+#orderBtn{
+
+display:block;
+margin-top:20px;
+padding:15px;
+background:#ff5722;
+color:#fff;
+text-align:center;
+border-radius:10px;
+
+}
+
+footer{
+
+padding:25px;
+text-align:center;
+color:#aaa;
+
+}
+
+</style>
 </head>
 
 <body>
 
-<header>
-<h1>🛍 Rayhan Digital Shop</h1>
+<div id="loader">
 
-<div class="header-btns">
+<img src="logo.png">
+
+<h2>Loading...</h2>
+
+</div>
+
+<header>
+
+<div class="logo">
+🛍 Rayhan Digital Shop
+</div>
+
+<div class="menu">
+
 <a href="https://www.facebook.com/rayhan.editz.2" target="_blank">Facebook</a>
+
 <a href="https://m.me/rayhan.editz.2" target="_blank">Messenger</a>
+
 </div>
 
 </header>
 
-<section class="search-box">
+<section class="search">
+
 <input type="text" id="search" placeholder="Search Product...">
+
 </section>
 
 <section class="products">
-
+  <!-- Product 1 -->
 <div class="card">
-<img src="images/product1.jpg" alt="Product 1">
-<h3>Ladies Two Piece</h3>
-<p class="price">৳1000</p>
-<button onclick="selectProduct('Ladies Two Piece',1000)">Select</button>
+<img src="images/twopiece1.jpg" alt="Ladies Two Piece">
+<h3>Ladies Pant & Shirt Two Piece</h3>
+<p class="price">৳950</p>
+<p style="padding:0 15px 10px;font-size:14px;">
+Garments Georgette • Free Size (42) • Shirt 38"
+</p>
+<button onclick="selectProduct('Ladies Pant & Shirt Two Piece',950)">
+Select
+</button>
 </div>
 
+<!-- Product 2 -->
 <div class="card">
-<img src="images/product2.jpg" alt="Product 2">
-<h3>Fashion Shirt</h3>
+<img src="images/trouser1.jpg" alt="Trouser">
+<h3>SWADESI STUFF Women Trouser</h3>
+<p class="price">৳450</p>
+<p style="padding:0 15px 10px;font-size:14px;">
+Cotton Blend • M, L, XL
+</p>
+<button onclick="selectProduct('SWADESI STUFF Women Trouser',450)">
+Select
+</button>
+</div>
+
+<!-- Product 3 -->
+<div class="card">
+<img src="images/blazer1.jpg" alt="Blazer">
+<h3>Western Denim Blazer Gown</h3>
 <p class="price">৳850</p>
-<button onclick="selectProduct('Fashion Shirt',850)">Select</button>
+<p style="padding:0 15px 10px;font-size:14px;">
+Export Denim • Free Size • 36–42
+</p>
+<button onclick="selectProduct('Western Denim Blazer Gown',850)">
+Select
+</button>
 </div>
 
+<!-- Product 4 -->
 <div class="card">
-<img src="images/product3.jpg" alt="Product 3">
-<h3>Stylish Pant</h3>
+<img src="images/cotton1.jpg" alt="Cotton Dress">
+<h3>Cotton Dress 3 Piece</h3>
 <p class="price">৳1200</p>
-<button onclick="selectProduct('Stylish Pant',1200)">Select</button>
+<p style="padding:0 15px 10px;font-size:14px;">
+Cotton • L, XL, XXL
+</p>
+<button onclick="selectProduct('Cotton Dress 3 Piece',1200)">
+Select
+</button>
+</div>
+
+<!-- Product 5 -->
+<div class="card">
+<img src="images/readymade1.jpg" alt="Readymade">
+<h3>Cotton Readymade Three Piece</h3>
+<p class="price">৳1350</p>
+<p style="padding:0 15px 10px;font-size:14px;">
+Pure Cotton • Luxury Chiffon
+</p>
+<button onclick="selectProduct('Cotton Readymade Three Piece',1350)">
+Select
+</button>
+</div>
+
+<!-- Product 6 -->
+<div class="card">
+<img src="images/saree1.jpg" alt="Half Silk Saree">
+<h3>Half Silk Handprinted Saree</h3>
+<p class="price">৳800</p>
+<p style="padding:0 15px 10px;font-size:14px;">
+Half Silk • 12 Hand Long
+</p>
+<button onclick="selectProduct('Half Silk Handprinted Saree',800)">
+Select
+</button>
 </div>
 
 </section>
@@ -57,9 +342,7 @@
 
 <h2>🛒 Selected Products</h2>
 
-<ul id="cartItems">
-<li>No product selected.</li>
-</ul>
+<ul id="cartItems"></ul>
 
 <a id="orderBtn"
 href="https://m.me/rayhan.editz.2"
@@ -67,19 +350,95 @@ target="_blank">
 📩 Inbox Order
 </a>
 
-<br><br>
-
-<button onclick="clearCart()">
-🗑 Clear Cart
-</button>
-
 </section>
 
 <footer>
-<p>© 2026 Rayhan Digital Shop</p>
-</footer>
 
-<script src="script.js"></script>
+© 2026 Rayhan Digital Shop
+
+</footer>
+  <script>
+
+let cart=[];
+
+function selectProduct(name,price){
+
+cart.push({name,price});
+
+renderCart();
+
+}
+
+function renderCart(){
+
+const list=document.getElementById("cartItems");
+
+list.innerHTML="";
+
+let message="🛍️ Rayhan Digital Shop Order%0A%0A";
+
+cart.forEach((item,index)=>{
+
+let li=document.createElement("li");
+
+li.style.margin="10px 0";
+
+li.innerHTML=`
+<b>${item.name}</b><br>
+৳${item.price}
+`;
+
+list.appendChild(li);
+
+message+=`${index+1}. ${item.name} - ৳${item.price}%0A`;
+
+});
+
+document.getElementById("orderBtn").href=
+"https://m.me/rayhan.editz.2?ref="+message;
+
+}
+
+document.getElementById("search").addEventListener("keyup",function(){
+
+let value=this.value.toLowerCase();
+
+document.querySelectorAll(".card").forEach(card=>{
+
+let title=card.querySelector("h3").innerText.toLowerCase();
+
+if(title.indexOf(value)>-1){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+});
+
+window.onload=function(){
+
+setTimeout(function(){
+
+document.getElementById("loader").style.opacity="0";
+
+setTimeout(function(){
+
+document.getElementById("loader").style.display="none";
+
+},500);
+
+},1800);
+
+};
+
+</script>
 
 </body>
 </html>
+  
