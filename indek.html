@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rayhan Digital Shop</title>
 
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <h1>🛍 Rayhan Digital Shop</h1>
+
+    <div class="header-btns">
+        <a href="https://www.facebook.com/rayhan.editz.2" target="_blank">Facebook</a>
+        <a href="https://m.me/rayhan.editz.2" target="_blank">Messenger</a>
+    </div>
+</header>
+
+<section class="search-box">
+    <input type="text" id="search" placeholder="Search Product...">
+</section>
+
+<section class="products" id="productList">
+
+<div class="card">
+<img src="images/product1.jpg">
+<h3>Product Name</h3>
+<p class="price">৳1000</p>
+<button onclick="selectProduct('Product Name')">Select</button>
+</div>
+
+<div class="card">
+<img src="images/product2.jpg">
+<h3>Product Name</h3>
+<p class="price">৳850</p>
+<button onclick="selectProduct('Product Name')">Select</button>
+</div>
+
+<div class="card">
+<img src="images/product3.jpg">
+<h3>Product Name</h3>
+<p class="price">৳1200</p>
+<button onclick="selectProduct('Product Name')">Select</button>
+</div>
+
+</section>
+
+<section class="cart">
+<h2>Selected Products</h2>
+
+<ul id="cartItems"></ul>
+
+<a id="orderBtn"
+target="_blank"
+href="https://m.me/rayhan.editz.2">
+Inbox Order
+</a>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
