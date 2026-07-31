@@ -1,205 +1,152 @@
-// ======================================
+// ================================
 // Rayhan Digital Shop
-// script.js - Part 1
-// ======================================
+// Complete script.js
+// ================================
 
 let cart = [];
 
-// Add Product
-function selectProduct(productName, price = "") {
+// Load cart when page opens
+window.onload = function () {
+    const saved = localStorage.getItem("rayhan_cart");
+
+    if (saved) {
+        cart = JSON.parse(saved);
+    }
+
+    renderCart();
+};
+
+// Select Product
+function selectProduct(name, price = "") {
 
     cart.push({
-        name: productName,
+        name: name,
         price: price
     });
 
     saveCart();
     renderCart();
-}
 
-// Render Cart
-function renderCart(){
-
-    const cartItems = document.getElementById("cartItems");
-
-    cartItems.innerHTML = "";
-
-    if(cart.length===0){
-        cartItems.innerHTML="<li>No product selected.</li>";
-        updateOrderLink();
-        return;
-    }
-
-    cart.forEach((item,index)=>{
-
-        const li=document.createElement("li");
-
-        li.innerHTML=`
-            <strong>${item.name}</strong>
-            ${item.price ? `<br>৳${item.price}` : ""}
-            <br>
-            <button onclick="removeItem(${index})">
-                Remove
-            </button>
-        `;
-
-        cartItems.appendChild(li);
-
-    });
-
-    updateOrderLink();
-
-}
-
-// Remove Item
-function removeItem(index){
-
-    cart.splice(index,1);
-
-    saveCart();
-
-    renderCart();
-
+    alert(name + " added to cart.");
 }
 
 // Save Cart
-function saveCart(){
-
-    localStorage.setItem(
-        "rayhan_cart",
-        JSON.stringify(cart)
-    );
-
+function saveCart() {
+    localStorage.setItem("rayhan_cart", JSON.stringify(cart));
 }
 
-// Load Cart
-function loadCart(){
+// Remove Product
+function removeItem(index) {
+    cart.splice(index, 1);
+    saveCart();
+    renderCart();
+}
 
-    const data=localStorage.getItem("rayhan_cart");
+// Clear Cart
+function clearCart() {
 
-    if(data){
-
-        cart=JSON.parse(data);
-
+    if (confirm("Clear all products?")) {
+        cart = [];
+        saveCart();
+        renderCart();
     }
 
-    renderCart();
-
 }
 
-// Start
-window.onload=loadCart;
-// ======================================
-// Rayhan Digital Shop
-// script.js - Part 2
-// ======================================
+// Render Cart
+function renderCart() {
 
-// Messenger Order Link
-function updateOrderLink(){
+    const cartItems = document.getElementById("cartItems");
 
-    const orderBtn = document.getElementById("orderBtn");
+    if (!cartItems) return;
 
-    if(!orderBtn) return;
+    cartItems.innerHTML = "";
 
-    let message = "🛍️ Rayhan Digital Shop Order\n\n";
+    if (cart.length === 0) {
 
-    if(cart.length===0){
+        cartItems.innerHTML = "<li>No product selected.</li>";
 
-        message += "No product selected.";
+    } else {
 
-    }else{
+        cart.forEach((item, index) => {
 
-        cart.forEach((item,index)=>{
-
-            message += `${index+1}. ${item.name}`;
-
-            if(item.price){
-                message += ` - ৳${item.price}`;
-            }
-
-            message += "\n";
+            cartItems.innerHTML += `
+            <li>
+                <b>${item.name}</b><br>
+                ${item.price ? "৳" + item.price : ""}
+                <br>
+                <button onclick="removeItem(${index})">
+                Remove
+                </button>
+            </li>
+            `;
 
         });
 
     }
 
-    orderBtn.href =
-    "https://m.me/rayhan.editz.2?ref=" +
-    encodeURIComponent(message);
+    updateOrderLink();
 
 }
 
+// Messenger Order
+function updateOrderLink() {
 
-// Product Search
-const searchInput = document.getElementById("search");
+    const btn = document.getElementById("orderBtn");
 
-if(searchInput){
+    if (!btn) return;
 
-searchInput.addEventListener("keyup",function(){
+    let msg = "🛍️ Rayhan Digital Shop Order\n\n";
 
-    const value=this.value.toLowerCase();
+    if (cart.length == 0) {
 
-    const cards=document.querySelectorAll(".card");
+        msg += "No product selected.";
 
-    cards.forEach(card=>{
+    } else {
 
-        const title=card.querySelector("h3")
-        .innerText.toLowerCase();
+        cart.forEach((item, i) => {
 
-        if(title.includes(value)){
+            msg += (i + 1) + ". " + item.name;
 
-            card.style.display="block";
+            if (item.price) {
+                msg += " - ৳" + item.price;
+            }
 
-        }else{
+            msg += "\n";
 
-            card.style.display="none";
+        });
 
-        }
-
-    });
-
-});
-
-}
-// ======================================
-// Rayhan Digital Shop
-// script.js - Part 3 (Final)
-// ======================================
-
-// Clear Cart
-function clearCart() {
-    if (!confirm("সব প্রোডাক্ট Cart থেকে মুছে ফেলতে চান?")) {
-        return;
     }
 
-    cart = [];
-    saveCart();
-    renderCart();
+    btn.href =
+        "https://m.me/rayhan.editz.2?ref=" +
+        encodeURIComponent(msg);
 
-    alert("✅ Cart পরিষ্কার করা হয়েছে।");
 }
 
-// Order Button Click
-const orderBtn = document.getElementById("orderBtn");
+// Search
+const search = document.getElementById("search");
 
-if (orderBtn) {
+if (search) {
 
-    orderBtn.addEventListener("click", function () {
+    search.addEventListener("keyup", function () {
 
-        if (cart.length === 0) {
+        let value = this.value.toLowerCase();
 
-            alert("⚠️ আগে অন্তত একটি Product Select করুন।");
+        document.querySelectorAll(".card").forEach(card => {
 
-            return false;
-        }
+            let text = card.querySelector("h3").innerText.toLowerCase();
+
+            if (text.includes(value)) {
+                card.style.display = "";
+            } else {
+                card.style.display = "none";
+            }
+
+        });
 
     });
 
 }
 
-// Card Button Animation
-document.querySelectorAll(".card button").forEach(btn => {
-
-    btn.addEventListener("click", function () {
-
-        this.innerHTML = "✔ Selected";
+console.log("Rayhan Digital Shop Ready ✅");
